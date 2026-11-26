@@ -1,14 +1,16 @@
+'use client'
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 
 const NavbarList = () => {
+    const pathName = usePathname()
     const lists = <>
-        <li><Link href="/about">About</Link></li>
-        <li><Link href="/blogs">Blogs</Link></li>
-        <li><Link href="/dashboard">Dashboard</Link></li>
+        <li><Link href="/about" className={pathName === '/about' ? 'text-blue-600' : ''}>About</Link></li>
+        <li><Link href="/blogs" className={pathName === '/blogs' ? 'text-blue-600' : ''}>Blogs</Link></li>
+        <li><Link href="/dashboard" className={pathName === '/dashboard' ? 'text-blue-600' : ''}>Dashboard</Link></li>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="sticky navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,7 +26,7 @@ const NavbarList = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                   {lists}
+                    {lists}
                 </ul>
             </div>
             <div className="navbar-end">
